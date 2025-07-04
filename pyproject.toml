@@ -1,0 +1,22 @@
+[tool.poetry]
+name = "luminor-homework"
+version = "0.1.0"
+description = ""
+authors = ["kolomiax1 <andrej.kolomijec@gmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.12"
+pyyaml = "^6.0.2"
+pydantic = "^2.11.7"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.poetry.group.code-quality.dependencies]
+black = "^24.0.0"
+flake8 = "^7.0.0"
+isort = "^5.12.0"
+

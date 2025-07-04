@@ -1,0 +1,23 @@
+etl_name: dummy_mongo
+components:
+  extractor: 
+    location: plugins.extractors.mongo.MongoBatchExtractor
+    parameters:
+      uri: mongodb://localhost:27017/
+      database: dummy_db
+      collection: dummy_collection
+      pipeline: configurations.dummy_mongo.mongo_pipeline.generate_pipeline
+    components: 
+      validator: 
+        location: plugins.validators.model_validator.ModelValidator
+        parameters:
+          model: entities.models.dummy_mongo_model.DummyModel
+  loader:
+    location: plugins.loaders.s3_loader.S3Loader
+    parameters:
+      destination: s3://my-lakehouse/raw/....
+      batch_side: 1000
+      format: parquet
+    components: 
+      error_handler: 
+        location: plugins.error_handlers.simple_handler.SimpleHandlerPlugin
